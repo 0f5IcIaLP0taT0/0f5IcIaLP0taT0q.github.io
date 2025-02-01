@@ -3,62 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Please?</title>
+    <title>AXYY</title>
     <style>
         body {
+            background-color: black;
+            color: white;
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             text-align: center;
-            margin-top: 50px;
+            flex-direction: column;
+            position: relative;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
         }
         button {
-            font-size: 20px;
-            padding: 10px 20px;
-            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            border: none;
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+            transition: transform 0.5s ease, background-color 0.3s;
         }
-        #response {
-            margin-top: 20px;
-            font-size: 24px;
-            color: pink;
+        button:hover {
+            background-color: #555;
         }
-        #noButton {
+        .flower {
             position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            font-size: 50px;
+        }
+        .really {
+            font-size: 30px;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .loveText {
+            font-size: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            font-weight: bold;
+            color: pink;
         }
     </style>
 </head>
 <body>
+    <h1 id="question">Will you be my Valentine?</h1>
+    <div class="buttons">
+        <button id="yesButton" onclick="onYesClick()">Yes</button>
+        <button id="noButton" onclick="onNoClick()">No</button>
+    </div>
+    <div id="reallyText" class="really">Say yes... :c</div>
 
-    <h1>Will you be my valentine?</h1>
+    <div class="flower" id="flowerEffect">
+        🌸🌸🌸🌸🌸🌸
+    </div>
 
-    <button id="yesButton">Yes</button>
-    <button id="noButton">No</button>
-
-    <div id="response"></div>
+    <div id="loveText" class="loveText">YAYAYAYYAYAY I LOVEE YOUUUU :> </div>
 
     <script>
-        const noButton = document.getElementById('noButton');
-        const yesButton = document.getElementById('yesButton');
+        let noButton = document.getElementById("noButton");
+        let yesButton = document.getElementById("yesButton");
+        let reallyText = document.getElementById("reallyText");
+        let flowerEffect = document.getElementById("flowerEffect");
+        let loveText = document.getElementById("loveText");
+        let question = document.getElementById("question");
 
-        // Handle the "Yes" button click
-        yesButton.onclick = function() {
-            document.getElementById('response').textContent = "YAYAYAYYAY I LOVEEE YOUUU ❤️";
-        };
-
-        // Function to move the "No" button to a random position
-        function moveNoButton() {
-            const randomX = Math.floor(Math.random() * 300) + 50; // Random X position
-            const randomY = Math.floor(Math.random() * 300) + 50; // Random Y position
-
-            noButton.style.left = `${randomX}px`;
-            noButton.style.top = `${randomY}px`;
+        function onNoClick() {
+            noButton.style.display = "none";
+            reallyText.style.opacity = 1;
         }
 
-        // Move the "No" button when the user hovers over it
-        noButton.onmouseover = function() {
-            moveNoButton();
-        };
-    </script>
+        function onYesClick() {
+            question.style.display = "none";  
+            yesButton.style.display = "none";  
+            noButton.style.display = "none"; 
+            reallyText.style.display = "none";
 
+            flowerEffect.style.display = "block";  
+            flowerEffect.classList.add("flower");
+            
+            setTimeout(function() {
+                loveText.style.display = "block";
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
